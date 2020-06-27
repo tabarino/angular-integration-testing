@@ -1,31 +1,45 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+    let app: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [RouterTestingModule.withRoutes([])],
+            declarations: [AppComponent],
+        }).compileComponents();
+    }));
 
-  it(`should have as title 'angular-integration-testing'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-integration-testing');
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        app = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-integration-testing app is running!');
-  });
+    it('should create the app', () => {
+        expect(app).toBeTruthy();
+    });
+
+    it(`should have as title 'angular-integration-testing'`, () => {
+        expect(app.title).toEqual('angular-integration-testing');
+    });
+
+    it('should have a router outlet', () => {
+        const de = fixture.debugElement.query(By.directive(RouterOutlet));
+
+        expect(de).not.toBeNull();
+    });
+
+    it('should have a link to todos page', () => {
+        const debugElements = fixture.debugElement.queryAll(By.directive(RouterLinkWithHref));
+
+        const index = debugElements.findIndex(de => de.properties.href === '/todos');
+
+        expect(index).toBeGreaterThan(-1);
+    });
 });
