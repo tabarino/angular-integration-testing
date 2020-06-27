@@ -19,6 +19,24 @@ describe('VoterComponent', () => {
         fixture.detectChanges();
     });
 
+    /**
+     * Unit Tests
+     */
+    it('should increment totalVotes when up voted', () => {
+        component.upVote();
+
+        expect(component.totalVotes).toBe(1);
+    });
+
+    it('should decrement totalVotes when down voted', () => {
+        component.downVote();
+
+        expect(component.totalVotes).toBe(-1);
+    });
+
+    /**
+     * Integration Tests
+     */
     it('should render the total votes', () => {
         component.othersVote = 20;
         component.myVote = 1;
