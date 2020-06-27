@@ -23,12 +23,18 @@ describe('VoterComponent', () => {
      * Unit Tests
      */
     it('should increment totalVotes when up voted', () => {
+        component.othersVote = 0;
+        component.myVote = 0;
+
         component.upVote();
 
         expect(component.totalVotes).toBe(1);
     });
 
     it('should decrement totalVotes when down voted', () => {
+        component.othersVote = 0;
+        component.myVote = 0;
+
         component.downVote();
 
         expect(component.totalVotes).toBe(-1);
