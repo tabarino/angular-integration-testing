@@ -30,12 +30,19 @@ describe('VoterComponent', () => {
         expect(el.innerText).toContain('21');
     });
 
-    it('should highlight the upvote button if I have upvoted', () => {
+    it('should highlight the upVote button if I have upvoted', () => {
         component.myVote = 1;
         fixture.detectChanges();
 
         const de = fixture.debugElement.query(By.css('.glyphicon-menu-up'));
 
         expect(de.classes.highlighted).toBeTruthy();
+    });
+
+    it('should increase totalVotes when I click the upVote button', () => {
+        const button = fixture.debugElement.query(By.css('.glyphicon-menu-up'));
+        button.triggerEventHandler('click', null);
+
+        expect(component.totalVotes).toBe(1);
     });
 });
