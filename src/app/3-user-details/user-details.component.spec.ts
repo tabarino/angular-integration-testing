@@ -36,4 +36,13 @@ describe('UserDetailsComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    it('should redirect the user to the users page after saving', () => {
+        const router = TestBed.inject(Router);
+        const spy = spyOn(router, 'navigate');
+
+        component.save();
+
+        expect(spy).toHaveBeenCalledWith(['users']);
+    });
 });
