@@ -14,7 +14,11 @@ export class TodosComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.service.getTodos().subscribe(todos => this.todos = todos);
+        // Return as Observable
+        // this.service.getTodos().subscribe(todos => this.todos = todos);
+
+        // Return as Promise
+        this.service.getTodosPromise().then(todos => this.todos = todos);
     }
 
     add() {
