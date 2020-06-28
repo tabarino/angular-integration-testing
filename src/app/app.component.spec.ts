@@ -1,6 +1,6 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -11,7 +11,7 @@ describe('AppComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule.withRoutes([])],
-            declarations: [AppComponent],
+            declarations: [AppComponent]
         }).compileComponents();
     }));
 
@@ -33,13 +33,5 @@ describe('AppComponent', () => {
         const de = fixture.debugElement.query(By.directive(RouterOutlet));
 
         expect(de).not.toBeNull();
-    });
-
-    it('should have a link to todos page', () => {
-        const debugElements = fixture.debugElement.queryAll(By.directive(RouterLinkWithHref));
-
-        const index = debugElements.findIndex(de => de.properties.href === '/todos');
-
-        expect(index).toBeGreaterThan(-1);
     });
 });
