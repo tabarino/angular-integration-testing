@@ -18,6 +18,7 @@ class MockElementRef {
 }
 
 describe('HighlightDirective', () => {
+    let el: ElementRef;
     let directive: HighlightDirective;
     let fixture: ComponentFixture<DirectiveHostComponent>;
 
@@ -29,13 +30,13 @@ describe('HighlightDirective', () => {
     }));
 
     beforeEach(() => {
+        el = TestBed.inject(ElementRef);
+        directive = new HighlightDirective(el);
         fixture = TestBed.createComponent(DirectiveHostComponent);
         fixture.detectChanges();
     });
 
     it('should create an instance', () => {
-        const el = TestBed.inject(ElementRef);
-        directive = new HighlightDirective(el);
         expect(directive).toBeTruthy();
     });
 
