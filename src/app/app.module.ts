@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { NavComponent } from './nav/nav.component';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { NavComponent } from './nav/nav.component';
         UserDetailsComponent,
         UsersComponent,
         HomeComponent,
-        NavComponent
+        NavComponent,
+        HighlightDirective
     ],
     imports: [
         BrowserModule,
